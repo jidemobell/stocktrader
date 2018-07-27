@@ -1,0 +1,31 @@
+{
+  "name": "stocktrader",
+  "version": "1.0.0",
+  "description": "an app to buy stocks of various exchange via an API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jidemobell/stocktrader.git"
+  },
+  "author": "jide olaniyan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jidemobell/stocktrader/issues"
+  },
+  "homepage": "https://github.com/jidemobell/stocktrader#readme",
+  "dependencies": {
+    "commander": "^2.16.0",
+    "inquirer": "^6.0.0",
+    "pg": "^7.4.3",
+    "validator": "^10.4.0"
+  },
+  "devDependencies": {
+    "dotenv": "^6.0.0",
+    "nodemon": "^1.18.3",
+    "yargs": "^12.0.1"
+  }
+}
+
