@@ -1,8 +1,6 @@
 require('dotenv').config();
 const {Pool} = require('pg');
-//const {getEnvConfig}  = require('./config');
 const fs = require('fs');
-// const pool = getEnvConfig();
 
 
 /**
@@ -28,7 +26,6 @@ pool.on('error', (err, client) => {
 });
 
 
-//function getSql(){ 
   fs.readFile('server/db/init.sql', 'utf-8', (err, data) => {
   if (err) {
     console.error('error reading sql file', err);
@@ -44,25 +41,8 @@ pool.on('error', (err, client) => {
         process.exit();
     }
   })()
-  
- // return data
+
 });
-
-
-// const data = getSql();
-// console.log('DATA oUTSIDE', data)
-
-// (async function(){
-//   try {
-//     const client = await pool.connect();
-//     await client.query(getSql())
-//     client.release()
-//   } catch (error) {
-//     console.error('DATABASE ERROR: ', error.stack)
-//       process.exit();
-//   }
-// })()
-
 
 module.exports = {
   pool

@@ -1,13 +1,14 @@
--- check for non sensitive case
---- create list for ocuntry and category
+-- checks if a stock_details table exists and creates it if not
 
 CREATE TABLE IF NOT EXISTS stock_details (
- company_id TEXT UNIQUE,
-  country TEXT,
-  budget INTEGER,
-  bid INTEGER,
-  category TEXT,
+  company_id TEXT UNIQUE,
+  country TEXT[],
+  budget NUMERIC(10,2),
+  bid NUMERIC(10,2),
+  category TEXT[],
   PRIMARY KEY (company_id)
 );
+
+
 
 

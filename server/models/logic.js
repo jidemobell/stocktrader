@@ -1,4 +1,4 @@
-const {queryHelper} = require('../../helperfunctions/query/pgQueryHelper');
+const {queryHelper} = require('../../libs/helpers/helpers');
 
 /**
  * action_1 : base targeting,
@@ -11,73 +11,76 @@ const {queryHelper} = require('../../helperfunctions/query/pgQueryHelper');
  */
 
 module.exports = {
- createCompany : async function (data){    //create with a base bid for test
-                 try {
-                  const result = await queryHelper(`INSERT INTO stock_details (company_id,country,budget,bid,category)
-                  VALUES ('${data.companyId}','${data.country}','${data.budget}',
-                  ${data.bid},'${data.category}';)`)
-                 //  .then(response => console.log('company creates on stockage'))
-                 //  .catch(e => console.log(e.stack))
-                  return result;
-                 } catch (error) {
-                  return error.stack
-                 }
-     
-
-  },
-
-
-  getBaseTarget: async function(data){
-                 try {
-                  const result = await queryHelper(`SELECT EXISTS (SELECT 1 FROM stock_details WHERE 
-                    company_id='${data.countryId}' AND category='${data.category}')`)
-                    // .then(response => response)
-                    // .catch(e => console.log(e.stack))
-                  return result;
-                   
-                 } catch (error) {
-                   //return error.stack
-                   throw error
-                 }
-    
-  },
-
-  checkBudget: async function(data){
+  createCompany: async function (data) { 
     try {
-      const result = await  queryHelper(`select * from stock_details where budget is not null;`)
-      // .then(response => response)
-      // .catch(e => console.log(e.stack))
+      const result = await queryHelper(
+        `INSERT INTO stock_details (company_id,country,budget,bid,category)
+         VALUES ('${data.companyId}','${data.country}','${data.budget}',
+         ${data.bid},'${data.category}';)`)
+      return result;
+    } catch (error) {
+      return error
+    }
+  },
+
+
+  getBaseTarget: async function (data) {
+    try {
+      const result = await queryHelper(
+        `SELECT company_id FROM stock_details 
+         WHERE '${data.country}'= any(country) AND '${data.category}' = any(category)`)
+      return result;
+    } catch (error) {
+      throw error
+    }
+
+  },
+
+  checkBudget: async function (data) {
+    try {
+      const result = await queryHelper(
+        `WITH temp_table AS (SELECT * FROM stock_details 
+         WHERE '${data.country}'= ANY(country) AND '${data.category}' = 
+         ANY(category)) SELECT company_id FROM temp_table WHERE budget IS NOT NULL`)
       return result
     } catch (error) {
       throw error
     }
-   
+
   },
 
-  checkBaseBid: async function(bid){
-  try {
-    const result = await  queryHelper(`SELECT * FROM stock_details WHERE bid < ${bid} ;`)
-      // .then(response => response) //shortlist the highest bid
-      // .catch(e => console.log(e.stack))
-      return result
-  } catch (error) {
-    throw error
-  }
-   
-  },
-
-  updateCompanyBudget: async function(data){
+  checkBaseBid: async function (data) {
+    const bid = parseInt(data.bid) / 100;
     try {
-        //calculate new budget from code then update
-    const result = await queryHelper(`UPDATE stock_details SET budget=${data.newBudget} WHERE company_id=${data.companyId};`)
-    // .then(response => response)
-    // .catch(e => console.log(e.stack))
-    return result;
+      const result = await queryHelper(`
+    WITH bid_table AS (WITH temp_table AS (SELECT * FROM stock_details 
+      WHERE '${data.country}'= ANY(country) AND '${data.category}' = 
+      ANY(category)) SELECT * FROM temp_table WHERE budget IS NOT NULL)
+    SELECT company_id FROM bid_table WHERE bid < ${bid}`)
+      return result
     } catch (error) {
-      return error.stack
+      throw error
     }
-    
+
+  },
+
+  shortList: async function (data) {
+    const bid = parseInt(data.bid) / 100;
+    try {
+      //calculate new budget from code then update
+      const result = await queryHelper(
+        `WITH final_table AS (WITH bid_table AS (WITH temp_table AS (SELECT * FROM stock_details 
+          WHERE '${data.country}'= ANY(country) AND '${data.category}' = 
+          ANY(category)) SELECT * FROM temp_table WHERE budget IS NOT NULL)
+        SELECT * FROM bid_table WHERE bid < ${bid}) 
+        SELECT company_id FROM final_table WHERE bid = (SELECT MAX(bid) FROM final_table) 
+        `)
+      return result;
+    } catch (error) {
+      return error
+    }
+
   }
-  
+
 
 }

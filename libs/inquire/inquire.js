@@ -3,9 +3,9 @@ const validator = require('validator');
 
 
 module.exports = {
-  makeBidInquiries(){
+  trade(){
     const questions = [
-     { name: 'countryId',
+     { name: 'country',
        type: 'input',
        message: 'Enter a Country code:',
        validate: value => {
@@ -33,7 +33,13 @@ module.exports = {
     {
       name:'bid',
       type:'input',
-      message: 'Enter a bid value:'
+      message: 'Enter a bid value:',
+      validate: value =>{
+        if(!value.length){
+          return 'Please indicate a bid value'
+        }
+        return true;
+      }
     }
     ];
 
