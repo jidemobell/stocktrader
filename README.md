@@ -19,11 +19,11 @@ This project uses postgres 9 and above. Install postgres, then Create a postgres
 
 Create environmental variables in .env file in the root folder of your project
 
-* PG_HOST=localhost
-* PG_USER=*database username*
-* PG_KEY=*database password*
-* PG_DBASE=MYDB
-* PG_PORT=5432 *postgres port number*
+- PG_HOST=localhost
+- PG_USER=*database username*
+- PG_KEY=*database password*
+- PG_DBASE=MYDB
+- PG_PORT=5432 *postgres port number*
   
 these params can also be set inside the db file*
 
