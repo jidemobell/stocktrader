@@ -1,13 +1,7 @@
 const {queryHelper} = require('../../libs/helpers/helpers');
 
 /**
- * action_1 : base targeting,
- * action_2 : budget check,
- * action_3 : base bid checks,
- * action_4 : shortlist
- * action_5 : update budget => budget minus bid
- * data from commander
- * 
+ *
  */
 
 module.exports = {

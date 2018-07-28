@@ -17,9 +17,21 @@ const logger = (log,header)=>{
   })
 }
 
+const parseSuccess = (data)=>{ 
+  const build = [];
+  for (let i = 0; i < data.length; i++) {
+  const e = data[i];
+  const id = e.company_id;
+  
+  build.push(`{${id},'Passed'}`)
+  }
+return build
+}
+
 
 
 module.exports = {
   queryHelper,
-  logger
+  logger,
+  parseSuccess
 };

@@ -1,21 +1,6 @@
+#!/usr/bin/env node
 const cluster = require('cluster');
-const program = require('commander');
-const {createCompany,getBaseTarget,checkBaseBid,checkBudget,shortList} = require('./server/models/logic');
-const {trade} = require('./libs/inquire/inquire');
-const {logger}= require('./libs/helpers/helpers')
 
-
-function parseSuccess(data){ 
-  const build = [];
-  for (let i = 0; i < data.length; i++) {
-  const e = data[i];
-  const id = e.company_id;
-  
-  build.push(`{${id},'Passed'}`)
-  //logger(`{ ${id},'Passed' }`)
-  }
-return build
-}
 
 
 // if (cluster.isMaster){
@@ -31,8 +16,23 @@ return build
 // 	// })
 
 // }else{
-//    console.log(`stocktrader running with worker ${cluster.worker.id}`);
-   
+//   console.log(`stocktrader running with worker ${cluster.worker.id}`);
+   const program = require('commander');
+   const figlet  = require('figlet');
+   const chalk   = require('chalk');
+   const {getBaseTarget,checkBaseBid,checkBudget,shortList} = require('./server/models/logic');
+   const {trade} = require('./libs/inquire/inquire');
+   const {logger,parseSuccess}= require('./libs/helpers/helpers');
+
+
+
+
+   console.log(
+    chalk.yellow(
+      figlet.textSync('StockTrader', { horizontalLayout: 'default', verticalLayout: 'default' })
+    )
+  );
+
    program
      .version('1.0.0')
      .description('an app to buy stocks of various exchange via an API')
@@ -43,7 +43,6 @@ return build
      .action(()=>{
        trade().then(answers => {
         getBaseTarget(answers).then(data =>{
-          console.log('passed base targets', data)
          const log = parseSuccess(data)
           logger(log,'BaseTargeting');
           checkBudget(answers).then(data =>{
