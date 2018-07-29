@@ -1,3 +1,4 @@
+
 const {Pool} = require('pg');
 const path = require('path')
 const fs = require('fs');
@@ -9,11 +10,11 @@ const fs = require('fs');
  */
 
 const config = {
-  user: '*****',
-  database: '******',
+  user: '****',
+  database: '****',
   password: '****',
   host: "localhost",
-  port: '****',
+  port: '***',
   max: 10,
   idleTimeoutMillis: 30000,
 }

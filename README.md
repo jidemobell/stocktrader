@@ -1,6 +1,7 @@
 # stocktrader
 an app to buy stocks of various exchange via an API
 
+*application only for assessment purposes*
 
 ## Installation
 
@@ -8,12 +9,13 @@ Quickly describe how to install your project and how to get it running
 
 1. Install Node dependencies
 
-        npm install
+        npm install -g
   
 
 ## Usage
  
-       run 'stocktrader' command from any command line or terminal window of choice after install
+       run 'stocktrader' 
+       command from any command line or terminal window of choice after install
 
 This project uses postgres 9 and above. Install postgres, then Create a postgres database and name it as you wish. "MYDB" for example. You will need the user name and password and connection port.
 
@@ -25,13 +27,19 @@ use any program of choice to populate table with test values
     | H1           | ['IN']       | 1.00     | 0.10  | ['*******']               |
     +--------------+--------------+----------+-------+---------------------------+
 
-Create environment variables in .env file in the root folder of your project and include the following details
 
-- PG_HOST=localhost
-- PG_USER=*database username*
-- PG_KEY=*database password*
-- PG_DBASE=MYDB
-- PG_PORT=5432 *postgres port number*
-  
-These parameters may also be entered directly inside the config file.
+enter postgres username, password, db_name, and port on the db.js file before running.
+
+please insert sample data into table prior testing. budget and bid data field uses a data type numeric for proper
+currency handling while country and category uses arrays for multiple entries.
+
+category names are assumes to be in all small cases during insert. insurance not Insurance
+
+
+
+The appplication generates a log with sample as seen below:
+
+Sun Jul 29 2018 16:26:55 GMT+0100 (W. Central Africa Standard Time):BudgetCheck:{C1,'Passed'},{C3,'Passed'}
+Sun Jul 29 2018 16:26:56 GMT+0100 (W. Central Africa Standard Time):BaseBid:{C3,'Passed'}
+Sun Jul 29 2018 16:26:56 GMT+0100 (W. Central Africa Standard Time):Winner:C3
 

@@ -6,8 +6,9 @@
   "scripts": {
     "test": "mocha"
   },
-  "preferGlobal": true,
-  "bin": " ./server.js",
+  "bin": {
+    "stocktrader": "./server.js trade"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jidemobell/stocktrader.git"
