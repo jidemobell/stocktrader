@@ -1,5 +1,5 @@
-require('dotenv').config();
 const {Pool} = require('pg');
+const path = require('path')
 const fs = require('fs');
 
 
@@ -9,11 +9,11 @@ const fs = require('fs');
  */
 
 const config = {
-  user: process.env.PG_USER,
-  database: process.env.PG_DBASE,
-  password: process.env.PG_KEY,
-  host: process.env.PG_HOST||"localhost",
-  port: process.env.PG_PORT||5432,
+  user: '*****',
+  database: '******',
+  password: '****',
+  host: "localhost",
+  port: '****',
   max: 10,
   idleTimeoutMillis: 30000,
 }
@@ -26,7 +26,7 @@ pool.on('error', (err, client) => {
 });
 
 
-  fs.readFile('server/db/init.sql', 'utf-8', (err, data) => {
+  fs.readFile(path.join(__dirname,'init.sql'), 'utf-8', (err, data) => {
   if (err) {
     console.error('error reading sql file', err);
     process.exit();

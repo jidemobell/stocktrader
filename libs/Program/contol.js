@@ -41,7 +41,7 @@ const control = (answers)=>{
         }
       })   
     }  
- }).catch(e => console.log(e.stack));  //db
+ }).catch(e => console.log(e.stack));  
 }
 
 

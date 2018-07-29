@@ -1,5 +1,4 @@
 const chai = require('chai');
-//const should = chai.should;
 const expect = chai.expect;
 chai.should();
 chai.use(require('chai-things'));
