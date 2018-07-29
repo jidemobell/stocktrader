@@ -32,6 +32,8 @@ enter postgres username, password, db_name, and port on the db.js file before ru
 
 please insert sample data into table prior testing. budget and bid data field uses a data type numeric for proper
 currency handling while country and category uses arrays for multiple entries.
+  
+  insert into stock_details (company_id,country,budget,bid,category) values ('C1','{"US","FR"}',1,0.10,'{"automobile","finance"}');
 
 category names are assumes to be in all small cases during insert. insurance not Insurance
 
