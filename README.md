@@ -30,6 +30,8 @@ use any program of choice to populate table with test values
 
 enter postgres username, password, db_name, and port on the db.js file before running.
 
+alternatively these values can be entered in a .env on the root folder
+
 please insert sample data into table prior testing. budget and bid data field uses a data type numeric for proper
 currency handling while country and category uses arrays for multiple entries.
   

@@ -33,9 +33,9 @@ const control = (answers)=>{
                  }else{
                    const log = parseWinSuccess(data)
                    logger(log,'Winner'); 
-                   console.log(chalk.blue( `Winner is company ${log[0]}`));
-                   updateCompany(`${log[0]}`,data).then(response =>{
-
+                   console.log(chalk.blue( `Winner is company '${log[0]}'`));
+                   const value = `${log[0]}`;
+                   updateCompany(value,answers).then(response =>{
                    }).catch(e => console.log(e.stack));
                  }
                })
