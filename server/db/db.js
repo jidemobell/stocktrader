@@ -19,12 +19,12 @@ const config = {
   // idleTimeoutMillis: 30000,
 
   //you may enter details inside a .env
-    user: process.env.PG_USER,
-    database: process.env.PG_DBASE,
-    password: process.env.PG_KEY,
-    host: process.env.PG_HOST||"localhost",
-    port: process.env.PG_PORT||5432,
-    idleTimeoutMillis: 30000,
+    // user: process.env.PG_USER,
+    // database: process.env.PG_DBASE,
+    // password: process.env.PG_KEY,
+    // host: process.env.PG_HOST||"localhost",
+    // port: process.env.PG_PORT||5432,
+    // idleTimeoutMillis: 30000,
 }
 
 const pool = new Pool(config);
