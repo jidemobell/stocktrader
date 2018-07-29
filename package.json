@@ -7,7 +7,7 @@
     "test": "mocha"
   },
   "bin": {
-    "stocktrader": "./server.js"
+    "stocktrader": "./server.js trade"
   },
   "repository": {
     "type": "git",

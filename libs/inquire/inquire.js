@@ -11,7 +11,7 @@ module.exports = {
        validate: value => {
          if(!value.length){
            return 'You need a country code to make a bid!'
-         }else if(!validator.isAlpha(value) && !validator.isLength(value,{min:0,max:2})){
+         }else if(!validator.isAlpha(value) || !validator.isLength(value,{min:0,max:2})){
            return `Country code should be of format 'CH', 'US'`
          }
          return true;
@@ -21,14 +21,14 @@ module.exports = {
       name: 'category',
       type: 'input',
       message: 'Enter a stock category:',
-      // validate: value =>{
-      //   if(!value.length){
-      //     return 'Please indicate a category'
-      //   }else if(!validator.isAlpha(value)){
-      //     return 'enter only alphanumeric values for category'
-      //   }
-      //   return true;
-      // }
+      validate: value =>{
+        if(!value.length){
+          return 'Please indicate a category'
+        }else if(!validator.isAlpha(value)){
+          return 'enter only alphanumeric values for category'
+        }
+        return true;
+      }
     },
     {
       name:'bid',
@@ -37,6 +37,8 @@ module.exports = {
       validate: value =>{
         if(!value.length){
           return 'Please indicate a bid value'
+        }else if(!validator.isInt(value,{allow_leading_zeroes: false})){
+          return 'enter only numbers to make a bid'
         }
         return true;
       }

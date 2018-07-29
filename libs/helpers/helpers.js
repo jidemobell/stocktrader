@@ -17,6 +17,17 @@ const logger = (log,header)=>{
   })
 }
 
+const exitLogger = (action) => {
+  const now = new Date().toString();
+  return new Promise((resolve, reject) => {
+    fs.appendFile('server.log',`${now}: program exits at ${action} check` + '\n' ,(err)=>{
+       if(err) reject(err)
+       process.exit();
+    })  
+  }) 
+}
+
+
 const parseSuccess = (data)=>{ 
   const build = [];
   for (let i = 0; i < data.length; i++) {
@@ -29,9 +40,22 @@ return build
 }
 
 
+const parseWinSuccess = (data) =>{
+  const build = [];
+  for (let i = 0; i < data.length; i++) {
+  const e = data[i];
+  const id = e.company_id;
+  
+  build.push(`${id}`)
+  }
+return build
+}
+
 
 module.exports = {
   queryHelper,
   logger,
-  parseSuccess
+  parseSuccess,
+  parseWinSuccess,
+  exitLogger
 };

@@ -13,11 +13,19 @@ Quickly describe how to install your project and how to get it running
 
 ## Usage
  
-       run 'stocktrader' command from any command or terminal windor of choice after install
+       run 'stocktrader' command from any command line or terminal window of choice after install
 
-This project uses postgres 9 and above. Install postgres, then Create a postgres database and name it as you wish. "MYDB" for example. You will need the user name and password for this and connection port.
+This project uses postgres 9 and above. Install postgres, then Create a postgres database and name it as you wish. "MYDB" for example. You will need the user name and password and connection port.
 
-Create environmental variables in .env file in the root folder of your project
+use any program of choice to populate table with test values
+
+    +--------------+--------------+----------+-------+---------------------------+
+    | company_id   | country      | budget   | bid   | category                  |
+    |--------------+--------------+----------+-------+---------------------------|
+    | H1           | ['IN']       | 1.00     | 0.10  | ['*******']               |
+    +--------------+--------------+----------+-------+---------------------------+
+
+Create environment variables in .env file in the root folder of your project and include the following details
 
 - PG_HOST=localhost
 - PG_USER=*database username*
@@ -25,5 +33,5 @@ Create environmental variables in .env file in the root folder of your project
 - PG_DBASE=MYDB
 - PG_PORT=5432 *postgres port number*
   
-these params can also be set inside the db file*
+These parameters may also be entered directly inside the config file.
 
