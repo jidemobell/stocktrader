@@ -43,7 +43,7 @@ category names are assumes to be in all small cases during insert. insurance not
 
 The appplication generates a log with sample as seen below:
 
-Sun Jul 29 2018 16:26:55 GMT+0100 (W. Central Africa Standard Time):BudgetCheck:{C1,'Passed'},{C3,'Passed'}
-Sun Jul 29 2018 16:26:56 GMT+0100 (W. Central Africa Standard Time):BaseBid:{C3,'Passed'}
-Sun Jul 29 2018 16:26:56 GMT+0100 (W. Central Africa Standard Time):Winner:C3
+   Sun Jul 29 2018 16:26:55 GMT+0100 (W. Central Africa Standard Time):BudgetCheck:{C1,'Passed'},{C3,'Passed'}.
+   Sun Jul 29 2018 16:26:56 GMT+0100 (W. Central Africa Standard Time):BaseBid:{C3,'Passed'}.
+   Sun Jul 29 2018 16:26:56 GMT+0100 (W. Central Africa Standard Time):Winner:C3.
 
