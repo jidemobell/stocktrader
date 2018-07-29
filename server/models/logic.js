@@ -74,6 +74,19 @@ module.exports = {
       return error
     }
 
+  },
+
+  updateCompany: async function(winner,data){
+    const bid = parseInt(data.bid) / 100;
+    try {
+       const result = await queryHelper(
+        `UPDATE stock_details SET budget = budget - ${bid}
+      WHERE company_id = ${winner}`
+      )
+      return true;
+    } catch (error) {
+      return error
+    }
   }
 
 

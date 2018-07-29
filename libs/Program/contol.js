@@ -1,5 +1,5 @@
 const chalk   = require('chalk');
-const {getBaseTarget,checkBaseBid,checkBudget,shortList} = require('../../server/models/logic');
+const {getBaseTarget,checkBaseBid,checkBudget,shortList,updateCompany} = require('../../server/models/logic');
 const {logger,exitLogger,parseSuccess,parseWinSuccess}= require('../helpers/helpers');
 
 
@@ -33,7 +33,10 @@ const control = (answers)=>{
                  }else{
                    const log = parseWinSuccess(data)
                    logger(log,'Winner'); 
-                   console.log(chalk.blue( `Winner is company ${log[0]}`))
+                   console.log(chalk.blue( `Winner is company ${log[0]}`));
+                   updateCompany(`${log[0]}`,data).then(response =>{
+
+                   }).catch(e => console.log(e.stack));
                  }
                })
              } 
